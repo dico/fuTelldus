@@ -1,0 +1,132 @@
+
+
+  TODO
+  _____________________________________________________________________________
+
+  	- Compare data from different times in a chart
+  	- Combine humidity charts (like temperature)
+  	- Highcharts
+
+
+
+  CHANGELOG - fuTelldus
+  _____________________________________________________________________________
+
+
+
+  	13.04.2013 (v3)
+	---------------------------------------------------------------
+	FEATURES:
+
+	-> Turn on/off sync from telldus live for sensors/devices
+		- New field "sync_from_telldus" under table "futelldus_users_telldus_config" in DB
+
+	-> Controll your lights
+		- New table in DB (futelldus_devices)
+		- Lights controlled with AJAX.
+
+	-> Schedule
+		- Notifications changed to schedule, with added function for controlling lights as well
+		- !! DB-table renamed
+
+	-> Swedish added as language (author: AcidSleeper Telldus Forum)
+
+	-> Possible to select chart type. Select between RGraph and Highchart in userprofile.
+
+
+	CHANGES:
+	- sensors.php changed with check for telldus sync everytime
+	- Telldus connection test in settings removed
+	- Notification changed to schedule
+	- Schedule (Old notification) sensor value changed from INT to DOUBLE-type in DB-field
+	- Removed ./ infront of lib-path for CRON files
+
+
+	BUGS:
+	- settings_user.php was missing language-variable for "Languages" headline
+
+
+	
+
+
+
+
+	07.04.2013 (v2)
+	---------------------------------------------------------------
+	FEATURES:
+	
+
+	-> Possible to read other users sensors from XML
+
+		inc/settings.php:					Added sidebar link
+		(NEW) inc/settings_share.php:		Script to add others sensor-data from XML
+		inc/settings_exec.php				Add and delete shared sensors
+
+		DATABASE:
+		- Table "futelldus_sensors_shared" added
+
+
+	- inc/xml_last_temp.php:
+		Location (clientname) added
+
+
+	
+
+	-> Auto timeago function
+		URL: http://timeago.yarp.com/
+
+		index.php:
+			script include
+		/lib/packages/timeago_jquery/jquery.timeago.js
+			new script
+		/inc/mainpage.php
+			Time update string changed with auto-update
+
+
+
+	-> Autorefresh
+		Page autorefreshes after non-mouse or key movement in 15 minutes
+
+
+
+	-> Notifications
+		Create own notifications
+		Uses a new crontab
+
+
+	-> Combined chart added
+
+	-> Run cronfiles manually under settings/admin
+
+
+
+
+
+	BUGS:
+	- index.php:	
+		clearfix class for footer added
+
+	- inc/sensors_data.php:
+		end table-tag missing
+
+	- inc/settings_general.php
+		added language for messagebox
+
+	- inc/settings_users.php
+		Fixed href for user delete
+
+
+
+	CHANGES:
+	- graph.php renamed to chart.php
+	- XML files renamed and moved to public folder
+	- Pagetitle/logo href-linked to start/home page
+	- New gui for temp-view in mainpage
+	- If jump in report.php is 0, it would be forced to 1
+
+
+
+
+	04.04.2013 (v1)
+	---------------------------------------------------------------
+	FIRST RELEASE
