@@ -3,6 +3,8 @@
 
 	/* Get parameters
 	--------------------------------------------------------------------------- */
+	$action = "";
+	$getID = "";
 	if (isset($_GET['id'])) $getID = clean($_GET['id']);
 	if (isset($_GET['action'])) $action = clean($_GET['action']);
 
@@ -23,6 +25,7 @@
 	    $device = $row['device'];
 	    $device_set_state = $row['device_set_state'];
 	    $send_to_mail = $row['send_to_mail'];
+		$send_to_pushover = $row['send_to_pushover'];
 	    $mail_primary = $row['notification_mail_primary'];
 	    $mail_secondary = $row['notification_mail_secondary'];
 
@@ -30,6 +33,7 @@
 		$warning_value = 30;
 		$repeat_alert = 60;
 		$send_to_mail = 1;
+		$send_to_pushover = 1;
 		$mail_primary = $user['mail'];
 		$mail_secondary = "";
 	}
@@ -185,12 +189,20 @@
 				// Send to
 				echo "<tr>";
 					echo "<td>{$lang['Send to']}</td>";
-					echo "<td>";
-						echo "<label class='checkbox'>";
-								if ($send_to_mail == 1) $sendToMailChecked = "checked='checked'";
-					          echo "<input type='checkbox' name='sendTo_mail' value='1' $sendToMailChecked> {$lang['Email']}";
-					        echo "</label>";
-					echo "</td>";
+					echo "<td><div class='row' style='padding-left:30px;padding-top:5px''>";
+						echo "<div class='span3'><label class='checkbox'>";
+							if ($send_to_mail == 1) {
+								$sendToMailChecked = "checked='checked'";
+							} else {
+								$sendToMailChecked = "checked='unchecked'";
+							}
+					        echo "<input type='checkbox' name='sendTo_mail' value='1' $sendToMailChecked> {$lang['Email']}";
+						echo "</label></div>";	
+						echo "<div class='span9'><label class='checkbox'>";
+					    	if ($send_to_pushover == 1) $sendToPushoverChecked = "checked='checked'";
+					        echo "<input type='checkbox' name='sendTo_pushover' value='1' $sendToPushoverChecked> {$lang['Pushover']}";
+					    echo "</label></div>";
+					echo "</div></td>";					
 				echo "</tr>";
 
 
@@ -325,7 +337,7 @@
 
 								echo "<ul class='dropdown-menu'>";
 					    			echo "<li><a href='?page=settings&view=schedule&action=edit&id={$row['notification_id']}'>Edit</a></li>";
-					    			echo "<li><a href='?page=settings_exec&action=deleteNotification&id={$row['notification_id']}'>Delete</a></li>";
+					    			echo "<li><a href='?page=settings_exec&action=deleteSchedule&id={$row['notification_id']}'>Delete</a></li>";
 								echo "</ul>";
 							echo "</div>";
 		    			echo "</td>";

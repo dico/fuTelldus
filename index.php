@@ -1,6 +1,9 @@
 <?php
 	require("lib/base.inc.php");
 	require("lib/auth.php");
+
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');	
 ?>
 
 
@@ -19,6 +22,7 @@
 
 	<!-- Jquery -->
 	<script src="lib/packages/jquery/jquery-1.9.1.min.js"></script>
+	<script src="lib/jscripts/jquery.bootstrap.confirm.popover.js"></script>
 
 	<script src="lib/packages/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
 	<link href="lib/packages/jquery-ui-1.10.2.custom/css/smoothness/jquery-ui-1.10.2.custom.min.css" rel="stylesheet">
@@ -33,6 +37,8 @@
 	<script src="lib/packages/bootstrap/js/bootstrap.min.js"></script>
 	<link href="lib/packages/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="lib/packages/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="lib/packages/bootstrap-editable-1.4.4/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+	<script src="lib/packages/bootstrap-editable-1.4.4/bootstrap-editable/js/bootstrap-editable.js"></script>	
 
 
 	<link href="css/pagestyle.css" rel="stylesheet">

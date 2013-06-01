@@ -40,6 +40,9 @@
 	--------------------------------------------------------------------------- */
 	require ('php_functions/global.functions.inc.php');
 	require ('php_functions/datetime.functions.inc.php');
+	require ('php_functions/vSensorPlugin.functions.inc.php');
+	require ('php_functions/telldus.functions.inc.php');
+	
 
 	
 	

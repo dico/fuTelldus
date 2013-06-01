@@ -80,7 +80,7 @@
 	    $result = $mysqli->query($query);
 
 	    while ($row = $result->fetch_array()) {
-	    	
+	    	$showFromDate = 0;
 
 	    	$sensorID = trim($row['sensor_id']);
 
@@ -168,8 +168,27 @@
 			    }
 			}
 		echo "</div>";
+		
+		
+		
+		/* Virtual sensors
+    	--------------------------------------------------------------------------- */
+	    echo "<div>";
+		    $query = "SELECT * FROM ".$db_prefix."virtual_sensors WHERE user_id='{$user['user_id']}' AND show_in_main='1' ORDER BY description ASC";
+		    $result = $mysqli->query($query);
 
+		    while ($row = $result->fetch_array()) {
+	    	
+				$sensorType = trim($row['sensor_type']);
+				
+				$queryVHT = "SELECT * FROM ".$db_prefix."virtual_sensors_types WHERE type_int='$sensorType'";
+				$resultVHT = $mysqli->query($queryVHT);
+				$virtualHostType = $resultVHT->fetch_array();
 
+				$actualState = getCurrentVirtualSensorStateWidet($row['id']);
+				echo $actualState;
+			}
+		echo "</div>";		
 
 	echo "</div>";
 

@@ -5,9 +5,7 @@
 	if (isset($_GET['id'])) $getID = clean($_GET['id']);
 	if (isset($_GET['action'])) $action = clean($_GET['action']);
 
-
-
-
+	
 
 	/* add sensor
 	--------------------------------------------------------------------------- */
@@ -60,4 +58,5 @@
 		exit();
 	}
 
+	
 ?>

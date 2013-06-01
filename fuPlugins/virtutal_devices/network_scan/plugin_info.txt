@@ -1,0 +1,4 @@
+name = Network scan
+author = Jens Leisenberg
+version = 1
+description = Detects hosts in a network using NMAP and/or SNMP. It is also possible to detect smartphones.

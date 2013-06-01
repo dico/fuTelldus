@@ -1,5 +1,5 @@
 <?php
-
+ 
 
   	/* Get parameters
   	--------------------------------------------------------------------------- */
@@ -30,12 +30,25 @@
             <li class="nav-header"><?php echo $lang['Settings']; ?></li>
 
             <?php
+			  $vActive_virtualsensors = "";
+			  $vActive_general = "";
+			  $vActive_user = "";
+			  $vActive_share = "";
+			  $vActive_notifications = "";
+			  $vActive_schedule = "";
+			  $vActive_cron = "";
+			  $vActive_virtualsensors_types = "";
+			  $vActive_telldusTest = "";
+			  $vActive_users = "";
+			  
               if ($view == "general") $vActive_general = "active";
               if ($view == "user") $vActive_user = "active";
               if ($view == "share") $vActive_share = "active";
+			  if ($view == "virtualsensors") $vActive_virtualsensors = "active";
               if ($view == "notifications") $vActive_notifications = "active";
               if ($view == "schedule") $vActive_schedule = "active";
               if ($view == "cron") $vActive_cron = "active";
+			  if ($view == "virtualsensors_types") $vActive_virtualsensors_types = "active";
               if (substr($view, 0, 12) == "telldus_test") $vActive_telldusTest = "active";
               if (substr($view, 0, 5) == "users") $vActive_users = "active";
 
@@ -44,6 +57,7 @@
 
               echo "<li class='$vActive_user'><a href='?page=settings&view=user&action=edit&id={$user['user_id']}'>{$lang['Userprofile']}</a></li>";
               echo "<li class='$vActive_share'><a href='?page=settings&view=share'>{$lang['Shared sensors']}</a></li>";
+			  echo "<li class='$vActive_virtualsensors'><a href='?page=settings&view=virtualsensors'>{$lang['Virtual sensors']}</a></li>";
               echo "<li class='$vActive_schedule'><a href='?page=settings&view=schedule'>{$lang['Schedule']}</a></li>";
               //echo "<li class='$vActive_telldusTest'><a href='?page=settings&view=telldus_test'>{$lang['Telldus connection test']}</a></li>";
 
@@ -53,6 +67,9 @@
                 echo "<li class='$vActive_general'><a href='?page=settings&view=general'>".$lang['Page settings']."</a></li>";
                 echo "<li class='$vActive_users'><a href='?page=settings&view=users'>".$lang['Users']."</a></li>";
                 echo "<li class='$vActive_cron'><a href='?page=settings&view=cron'>".$lang['Test cron-files']."</a></li>";
+				
+				echo "<li class='nav-header'>System configuration</li>";
+				echo "<li class='$vActive_virtualsensors_types'><a href='?page=settings&view=virtualsensors_types'>".$lang['Virtual sensor plugins']."</a></li>";
               }
             ?>
 

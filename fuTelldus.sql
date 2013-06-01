@@ -42,8 +42,8 @@ INSERT INTO `futelldus_config` (`config_id`, `config_name`, `config_value`, `com
 (1, 'pagetitle', 'fuTelldus', ''),
 (10, 'default_language', 'en', ''),
 (11, 'mail_from', 'mail@mydomain.com', ''),
-(13, 'chart_max_days', '365', ''),
-(14, 'public_page_language', 'en', '');
+(14, 'public_page_language', 'en', ''),
+(15, 'pushover_api_token', '', '');
 
 -- --------------------------------------------------------
 
@@ -84,12 +84,13 @@ CREATE TABLE IF NOT EXISTS `futelldus_schedule` (
   `device` int(11) NOT NULL,
   `device_set_state` tinyint(4) NOT NULL,
   `send_to_mail` tinyint(4) NOT NULL,
+  `send_to_pushover` tinyint(4) NOT NULL,
   `last_warning` int(11) NOT NULL,
   `notification_mail_primary` varchar(256) NOT NULL,
   `notification_mail_secondary` varchar(256) NOT NULL,
   PRIMARY KEY (`notification_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
+-- ALTER TABLE futelldus_schedule ADD send_to_pushover tinyint(4) NOT NULL;
 
 -- --------------------------------------------------------
 
@@ -163,9 +164,12 @@ CREATE TABLE IF NOT EXISTS `futelldus_users` (
   `password` varchar(128) NOT NULL,
   `language` varchar(64) NOT NULL,
   `admin` tinyint(4) NOT NULL,
-  `chart_type` varchar(64) NOT NULL,
+  `pushover_key` varchar(256),
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+-- ALTER TABLE futelldus_users ADD pushover_key varchar(256);
+-- alter table futelldus_users drop column chart_type;
+
 
 --
 -- Dataark for tabell `futelldus_users`
@@ -187,7 +191,90 @@ CREATE TABLE IF NOT EXISTS `futelldus_users_telldus_config` (
   `private_key` varchar(256) NOT NULL,
   `token` varchar(256) NOT NULL,
   `token_secret` varchar(256) NOT NULL,
+  `pushover_key` varchar(256),
   PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Tabellstruktur for tabell `futelldus_virtueal_sensors`
+--
+CREATE TABLE IF NOT EXISTS `futelldus_virtual_sensors` (
+  `id` MEDIUMINT NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `description` varchar(256) NOT NULL,
+  `sensor_type` tinyint(4) NOT NULL,
+  `last_update` int(11),
+  `last_check` int(11),
+  `online` tinyint(4) NOT NULL,
+  `monitoring` tinyint(4) NOT NULL,
+  `show_in_main` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tabellstruktur for tabell `futelldus_virtual_sensors_config`
+--
+CREATE TABLE IF NOT EXISTS `futelldus_virtual_sensors_config` (
+  `sensor_id` int(11) NOT NULL,
+  `config_id` int(11) NOT NULL,
+  `value` varchar(256) NOT NULL,
+  PRIMARY KEY (`sensor_id`, `config_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tabellstruktur for tabell `futelldus_virtual_sensors_tmpvals`
+--
+CREATE TABLE IF NOT EXISTS `futelldus_virtual_sensors_tmpvals` (
+  `sensor_id` int(11) NOT NULL,
+  `value_key` varchar(256) NOT NULL,
+  `value` varchar(256),
+  PRIMARY KEY (`sensor_id`, `value_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tabellstruktur for tabell `futelldus_virtueal_sensors_types`
+--
+CREATE TABLE IF NOT EXISTS `futelldus_virtual_sensors_types` (
+  `type_int` MEDIUMINT NOT NULL AUTO_INCREMENT,
+  `type_description` varchar(256),
+  `plugin_path` varchar(256),
+  `activated_version` int(11) NOT NULL,
+  `hidden` tinyint(4) NOT NULL COMMENT '0=off, 1=on',
+  PRIMARY KEY (`type_int`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tabellstruktur for tabell `futelldus_virtual_sensors_types_config`
+--
+CREATE TABLE `futelldus_virtual_sensors_types_config` (
+  `id` MEDIUMINT auto_increment not null,
+  `type_int` int(11),
+  `value_key` varchar(256),
+  `value_type` varchar(256) NOT NULL,
+  `description` varchar(256),
+  key(id),
+  PRIMARY KEY (`type_int`, `value_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tabellstruktur for tabell `futelldus_virtual_sensors_log`
+--
+CREATE TABLE IF NOT EXISTS `futelldus_virtual_sensors_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sensor_id` int(11) NOT NULL,
+  `time_updated` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tabellstruktur for tabell `futelldus_virtual_sensors_log_values`
+--
+CREATE TABLE IF NOT EXISTS `futelldus_virtual_sensors_log_values` (
+  `log_id` int(11) NOT NULL,
+  `value_key` varchar(256) NOT NULL,
+  `value` varchar(256) NOT NULL,
+  PRIMARY KEY (`log_id`, `value_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

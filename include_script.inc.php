@@ -14,7 +14,7 @@
 			if (file_exists("$directory/$page.$extension"))
 				include("$directory/$page.$extension");
 			else
-				echo "<h2>Error 404</h2>\n<p>Siden du leter etter finnes ikke lengre!</p>\n";
+				echo "<h2>Error 404</h2>\n";
 		}
 	}
 

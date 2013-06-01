@@ -35,6 +35,13 @@
 				<input style='width:50px;' type="text" name='chart_max_days' id="chart_max_days" placeholder="<?php echo $lang['Chart max days']; ?>" value='<?php echo $config['chart_max_days']; ?>'>
 			</div>
 		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="pushover_api_token"><?php echo $lang['Pushover API token']; ?></label>
+			<div class="controls">
+				<input type="text" name='pushover_api_token' id="pushover_api_token" placeholder="<?php echo $lang['Pushover API token']; ?>" value='<?php echo $config['pushover_api_token']; ?>'>
+			</div>
+		</div>
 
 		<?php
 			echo "<div class='control-group'>";

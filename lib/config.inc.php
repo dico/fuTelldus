@@ -4,9 +4,9 @@
 	/* Connect to database
 	--------------------------------------------------------------------------- */
 	$host 		= "localhost"; 					// Host name
-	$username 	= "USERNAME"; 					// Mysql username
-	$password 	= "PASSWORD"; 					// Mysql password
-	$db_name 	= "DATABASE_NAME"; 				// Mysql DB
+	$username 	= "telldus"; 					// Mysql username
+	$password 	= "lb77rghf"; 					// Mysql password
+	$db_name 	= "telldus_log"; 				// Mysql DB
 
 	
 	
@@ -19,7 +19,7 @@
 	
 	/* Timezone
 	--------------------------------------------------------------------------- */
-	date_default_timezone_set('Europe/Oslo');
+	date_default_timezone_set('Europe/Berlin');
 	
 	
 	
@@ -28,5 +28,6 @@
 	/* PHP error reporting
 	--------------------------------------------------------------------------- */
 	error_reporting(E_ALL ^ E_NOTICE);
+	ini_set('include_path', '/www/');
 	
 ?>

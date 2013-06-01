@@ -1,0 +1,4 @@
+name = Device as sensor
+author = Jens Leisenberg
+version = 1
+description = 'Lets a device act like a sensor (useful e.g. magnetic switches or mition sensors)'

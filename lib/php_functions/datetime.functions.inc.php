@@ -89,7 +89,7 @@
 		//now we just find the difference
 		if ($diff == 0)
 		{
-			return 'akkurat nå';
+			return $lang['right now'];
 		}    
 
 		if ($diff < 60)
