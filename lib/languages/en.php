@@ -13,18 +13,30 @@ $lang = array(
 	"Sensors" => "Sensors",
 	"Chart" => "Chart",
 	"Report" => "Report",
-	"Lights" => "Lights",
+	"Lights" => "Devices",
 	"Settings" => "Settings",
 	"Log out" => "Log out",
 
 	"Page settings" => "Page settings",
 	"Users" => "Users",
-	"Shared sensors" => "Delte sensorer",
+	"Shared sensors" => "Shared sensors",
 	"Test cron-files" => "Test cron-files",
 	"View public page" => "View public page",
 	"View public sensors" => "View public sensors",
+	"Virtual sensors" => "Virtual sensors",
+	"Pushover API token" => "Pushover API token",
 
-
+	
+	// Common
+	"Icon" => "Icon",
+	"Test" => "Test",
+	"Close" => "Close",
+	"Send" => "Send",
+	"Pushover" => "Pushover",
+	"Send Notification" => "Send Notification",
+	"Your Pushover key" => "Your Pushover key",
+	"Select device" => "Select device",
+	"Test message sent" => "Test message sent",
 
 	// User
 	"Usersettings" => "Usersettings",
@@ -92,6 +104,7 @@ $lang = array(
 	"Combine charts" => "Combine charts",
 	"Split charts" => "Split charts",
 	"View chart" => "View chart",
+	"Charts" => "Charts",
 
 
 	// Sensors
@@ -107,6 +120,27 @@ $lang = array(
 	// Shared sensors
 	"Add shared sensor" => "Add shared sensor",
 
+	// Virtual sensors
+	"Add virtual sensor" => "Add virtual sensor",
+	"Host available" => "Host available",
+	"Device as sensor" => "Device as sensor",
+	"Add sensor" => "Add sensor",
+	"Update sensor" => "Update sensor",
+	"Virtual sensor added" => "Virtual sensor added",
+	"Virtual sensor updated" => "Virtual sensor updated",
+	"Virtual sensor deleted" => "Virtual sensor deleted",
+	"boolean_0" => "false",
+	"boolean_1" => "true",
+	"Virtual sensor types" => "Virtual sensor types",
+	"Virtual sensor plugins" => "Virtual sensor plugins",
+	"Virtual sensor type added" => "Virtual sensor type added",
+	"Virtual sensor type deleted" => "Virtual sensor type deleted",
+	"Add virtual sensor type" => "Add virtual sensor type",
+	"Add type" => "Add type",
+	"description_icon" => "The ralative path to an icon",
+	"description_typephp" => "The PHP file with getVirtualSensorVal($parameter) method",
+	"PHPFile" => "PHP file",
+	
 
 	// Schedule
 	"Schedule" => "Schedule",
@@ -120,6 +154,8 @@ $lang = array(
 	"Last sent" => "Last sent",
 	"Device action" => "Device action",
 	"No device action" => "No device action",
+	"Notification" => "Notification",
+	"Pushover key" => "Pushover key",
 
 	// Mail notifications
 	"Notification mail low temperature" => "Warning: Temperature is low!<br /><br />Sensor: %%sensor%%<br />Temperature is %%value%% &deg;",
@@ -135,6 +171,8 @@ $lang = array(
 	"Off" => "Off",
 	"Groups" => "Groups",
 	"Devices" => "Devices",
+	"Scenes" => "Scenes",
+	"Scene" => "Scene",
 	
 
 
@@ -186,7 +224,8 @@ $lang = array(
 
 	// Time (ago)
 	"since" => "since",
-
+	"right now" => "right now",
+	
 	"secound" => "secound",
 	"minute" => "minute",
 	"hour" => "hour",
@@ -202,6 +241,7 @@ $lang = array(
 	"weeks" => "weeks",
 	"months" => "months",
 	"years" => "years",
+
 
 );
 

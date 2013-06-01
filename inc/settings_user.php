@@ -25,9 +25,6 @@
 		}
 	}
 
-
-
-
 	/* Get userdata
 	--------------------------------------------------------------------------- */
 	$result = $mysqli->query("SELECT * FROM ".$db_prefix."users WHERE user_id='".$getID."'");
@@ -50,6 +47,7 @@
 		if ($_GET['msg'] == 01) echo "<div class='alert alert-info'>".$lang['Userdata updated']."</div>";
 		elseif ($_GET['msg'] == 02) echo "<div class='alert alert-error'>".$lang['Old password is wrong']."</div>";
 		elseif ($_GET['msg'] == 03) echo "<div class='alert alert-error'>".$lang['New password does not match']."</div>";
+		elseif ($_GET['msg'] == 04) echo "<div class='alert alert-info'>".$lang['Test message sent']."</div>";
 	}
 
 
@@ -114,31 +112,40 @@
 
 	</fieldset>
 
-
+	
 	<?php
 		echo "<fieldset>";
-			echo "<legend>{$lang['Chart']}</legend>";
+			echo "<legend>{$lang['Notification']}</legend>";
 			echo "<div class='control-group'>";
-				echo "<label class='control-label' for='selectChart'>".$lang['Select chart']."</label>";
+				echo "<label class='control-label' for='insertPushoverKey'>".$lang['Pushover key']."</label>";
 				
 				echo "<div class='controls'>";
-					echo "<label class='selectChart'>";
-						echo "<select name='selectChart'>";
-
-							if ($selectedUser['chart_type'] == "rggraph") $selectedChartRGraph = "selected='selected'";
-							elseif ($selectedUser['chart_type'] == "highcharts") $selectedChartHighchart = "selected='selected'";
-							else $selectedChartRGraph = "selected='selected'";
-
-							echo "<option value='' $selectedChartRGraph>{$lang['Default chart']}</option>";
-							echo "<option value='rgraph' $selectedChartRGraph>RGraph</option>";
-							echo "<option value='highcharts' $selectedChartHighchart>Highcharts</option>";
-						echo "</select>";
+					echo "<label class='insertPushoverKey'>";
+						echo "<input type='text' name='pushover_key' id='pushover_key' value='".$selectedUser['pushover_key']."' style='width:250px;'/>";
+						echo "<a class='btn btn-success' style='margin-left:15px;'  href='#test_notification' data-toggle='modal'\">".$lang['Test']."</a>";
 			        echo "</label>";
 				echo "</div>";
 			echo "</div>";
 		echo "</fieldset>";	
 	?>
-
+	
+	<!-- The modal test dialog for notifications -->
+	<div class="modal fade" id="test_notification">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal">&times;</a>
+			<h3><?php echo $lang['Send Notification'] ?></h3>
+		</div>
+		<div class="modal-body">
+			<p><b><?php echo $lang['Your Pushover key'] ?>:</b> <?php echo $selectedUser['pushover_key'] ?> </p>
+			<!--<p><b><?php echo $lang['Select device'] ?>:</b> -->
+		</div>
+		<div class="modal-footer">
+			<a href="?page=settings_exec&action=sendTestNotification&pushover_key=<?php echo $selectedUser['pushover_key'] ?>&subject=Test&message=Test notification&id=<?php echo $getID ?>" class="btn btn-success" id="send_notification"><?php echo $lang['Send'] ?></a>
+			<a href="#" class="btn" data-dismiss="modal"><?php echo $lang['Close'] ?></a>
+		</div>
+	</div>
+	
+	<!-- sendNotification($selectedUser['pushover_key'], "Test", "Test message")  -->
 	<fieldset>
 		<legend><?php echo $lang['Language']; ?></legend>
 		<?php
@@ -184,6 +191,8 @@
 				
 				echo "<div class='controls'>";
 
+					$syncTelldusOff = "";
+					$syncTelldusOn = "";
 					if ($selectedUserTelldusConf['sync_from_telldus'] == 1) $syncTelldusOn = "checked='checked'";
 					else $syncTelldusOff = "checked='checked'";
 

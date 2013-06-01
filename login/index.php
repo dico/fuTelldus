@@ -1,7 +1,6 @@
 <?php
 
   require("../lib/base.inc.php");
-
   
   // Auto login with remember-me cookie
   if (isset($_COOKIE["fuTelldus_user_loggedin"])) {

@@ -1,8 +1,11 @@
 <?php
-
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');	
+	
 	/* Connect to database
 	--------------------------------------------------------------------------- */
-	require("./lib/base.inc.php");
+	require("lib/config.inc.php");
+	require("lib/base.inc.php");
 
 	// Create DB-instance
 	$mysqli = new Mysqli($host, $username, $password, $db_name); 
@@ -250,8 +253,18 @@
 				if ($row['send_to_mail'] == 1 && $repeatNotification == true) {
 
 					// Use mail-function in /lib/php_functions/global.functions.inc.php
-					if (!empty($row['notification_mail_primary'])) sendMail($row['notification_mail_primary'], $mailSubject, $mailMessage);
-					if (!empty($row['notification_mail_secondary'])) sendMail($row['notification_mail_secondary'], $mailSubject, $mailMessage);
+					//if (!empty($row['notification_mail_primary'])) sendMail($row['notification_mail_primary'], $mailSubject, $mailMessage);
+					//if (!empty($row['notification_mail_secondary'])) sendMail($row['notification_mail_secondary'], $mailSubject, $mailMessage);
+				}
+				
+				if ($row['send_to_pushover'] == 1 && $repeatNotification == true) {
+
+					// Use notification-function in /lib/php_functions/global.functions.inc.php
+					$pushover_key = $row['pushover_key'];
+					$subject = $mailSubject;
+					$message =  $mailMessage;
+
+					sendNotification($pushover_key, $subject, $message);
 				}
 			}
 

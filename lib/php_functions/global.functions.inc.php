@@ -51,7 +51,22 @@
 		}
 	}
 
-
+	function sendNotification($pushover_key, $subject, $message) {
+		global $config;
+	
+		$ch = curl_init();
+		$params = array(
+			CURLOPT_URL => "https://api.pushover.net/1/messages.json",
+			CURLOPT_POSTFIELDS => array(
+				"token" => $config['pushover_api_token'],
+				"user" => $pushover_key,
+				"title" => $subject,
+				"message" => $message,
+			));
+		curl_setopt_array($ch, $params);
+		$response = curl_exec($ch);
+		curl_close($ch);
+	}
 
 	function sendMail($to, $subject, $message) {
 		global $config;
@@ -66,6 +81,30 @@
 
 		// Mail it
 		mail($to, $subject, $message, $headers);
+	}
+
+	function includePlugin($pluginIndexFile) {
+		include_once $pluginIndexFile;
+
+		$nameSpace = getNameSpaceFromFile($pluginIndexFile);
+		return $nameSpace;
+	}
+	
+	function getNameSpaceFromFile($file) {
+		$h = fopen($file, 'r', true) or die('wtf');
+		if (!isset($h)) {
+			return "";
+		}
+		$n = '';
+
+		while (!feof($h) && !$n)
+		{
+			$l = fgets($h);
+			if (stripos($l, 'namespace') !== false) $n = preg_replace('/namespace\ +(\w+);/i', '$1', $l);
+		}
+
+		fclose($h);
+		return $n ? trim(str_replace(';', '', str_replace('namespace', '', trim($n)))) : '';	
 	}
 
 	/*
