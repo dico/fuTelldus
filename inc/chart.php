@@ -32,7 +32,7 @@ echo "<script>console.log( 'Chart type: $chartType' );</script>";
     echo "<div style='float:right; margin-top:-45px; margin-right:20px;' class='btn-group'>";
 
             echo "<a class='btn dropdown-toggle' data-toggle='dropdown' href='#''>";
-                echo "{$lang['Action']}";
+                echo "{$lang['Chart type']}";
                 echo "<span class='caret'></span>";
             echo "</a>";
 
