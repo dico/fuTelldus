@@ -175,6 +175,7 @@ $lang = array(
 	"Secondary" => "Sekundær",
 	"Now" => "Nå",
 	"Action" => "Action",
+        "Chart type" => "Graftype",
 
 		// send warning IF temperature IS more/less THAN   / FOR sensor ...
 		"If" => "Hvis",
