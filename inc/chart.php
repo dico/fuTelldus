@@ -10,19 +10,14 @@
 
     /* Get chart type
     --------------------------------------------------------------------------- */
-    if (empty($user['chart_type'])) $chartType = "rgraph";
+    if (empty($user['chart_type'])) $chartType = "mergeHCharts";
     else $chartType = $user['chart_type'];
 
     if (isset($_GET['charttype'])) {
         $chartType = clean($_GET['charttype']);
     }
 
-    if (isset($_GET['view'])) {
-        $view = clean($_GET['view']);
-    }
-
-echo "<script>console.log( 'Chart type: $chartType, view: $view' );</script>";
-
+echo "<script>console.log( 'Chart type: $chartType' );</script>";
 
 
     /* Headline
@@ -42,30 +37,17 @@ echo "<script>console.log( 'Chart type: $chartType, view: $view' );</script>";
             echo "</a>";
 
             echo "<ul class='dropdown-menu'>";
-                if ($chartType == "rgraph") {
-                    echo "<li><a href='?page=chart&charttype=highcharts'>Switch to Highcharts</a></li>";
-                	echo "<li><a href='?page=chart&view=mergeCharts'>{$lang['Combine charts']}</a></li>";
-                }
-
-                elseif ($chartType == "highcharts") {
-                    echo "<li><a href='?page=chart&charttype=rgraph'>Switch to RGraph</a></li>";
-                	echo "<li><a href='?page=chart&view=mergeHCharts'>{$lang['Combine charts']}</a></li>";
-                }
-
+		echo "<li><a href='?page=chart&charttype=highcharts'>Single Highcharts</a></li>";
+		echo "<li><a href='?page=chart&charttype=mergeHCharts'>{$lang['Combine charts']} Highcharts</a></li>";
+		echo "<li><a href='?page=chart&charttype=rgraph'>Single RGraph</a></li>";
+		echo "<li><a href='?page=chart&charttype=mergeCharts'>{$lang['Combine charts']} RGraph</a></li>";
                 echo "<li><a href='?page=report'>{$lang['Report']} (RGraph)</a></li>";
             echo "</ul>";
         echo "</div>";
 
-    
-
-
-    
-
-
 
     /* Include chart
     --------------------------------------------------------------------------- */
-    if (!isset($_GET['view'])) {
         if ($chartType == "rgraph") {
             include("inc/chart_rgraph.php");
         }
@@ -74,27 +56,16 @@ echo "<script>console.log( 'Chart type: $chartType, view: $view' );</script>";
             include("inc/chart_highchart.php");
         }
 
-        elseif ($charttype == "mergeCharts") {
+        elseif ($chartType == "mergeCharts") {
             include("inc/chart_rgraph_mergeSensors.php");
         }
 
-        elseif ($charttype == "mergeHCharts") {
+        elseif ($chartType == "mergeHCharts") {
             include("inc/chart_highchart_mergeSensors.php");
         }
 
         else {
             echo "Something went wrong.. Could'n determine chart to display. Try selecting chart in your userprofile.";
         }
-    }
-
-
-    else {
-        if ($view == "mergeCharts") {
-            include("inc/chart_rgraph_mergeSensors.php");
-        }
-        elseif ($view == "mergeHCharts") {
-            include("inc/chart_highchart_mergeSensors.php");
-        }
-    }
 
 ?>
