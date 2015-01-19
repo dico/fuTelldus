@@ -192,7 +192,7 @@
 
 	
 	echo "<div style='text-align:right;'>";
-		echo "<a style='margin-right:15px;' target='_blank' href='./public/chart.php?id=$getID'>Public chart</a>";
+		echo "<a style='margin-right:15px;' target='_blank' href='./public/?page=chart&id=$getID'>Public chart</a>";
 		echo "<a style='margin-right:15px;' target='_blank' href='./public/xml_sensor.php?sensorID=$getID'>XML Latest values</a>";
 		echo "<a style='margin-right:15px;' target='_blank' href='./public/xml_sensor_log.php?sensorID=$getID'>XML Values last day</a>";
 	echo "</div>";
